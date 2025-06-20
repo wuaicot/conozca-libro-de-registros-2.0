@@ -9,18 +9,18 @@ CONOZCA-LIBRO-DE-REGISTRO-2.0/
     │   ├── _document.tsx
     │   └── index.tsx
     ├── styles/
-    │   └── globals.css
+        └── globals.css
          
-        ├── .gitignore
-        ├── .txt
-        ├── eslint.config.mjs
-        ├── next-env.d.ts
-        ├── next.config.ts
-        ├── package-lock.json
-        ├── package.json
-        ├── postcss.config.mjs
-        ├── README.md
-        └── tsconfig.json
+├── .gitignore
+├── .txt
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── README.md
+└── tsconfig.json
 
 
 

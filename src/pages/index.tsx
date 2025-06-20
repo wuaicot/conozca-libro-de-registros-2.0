@@ -1,7 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-
 export default function LandingPage() {
   const router = useRouter();
 
@@ -15,6 +14,10 @@ export default function LandingPage() {
     router.push(path);
   };
 
+  const handleTriptico = () => {
+    router.push("/triptico");
+  };
+
   const handleConserjeria = () => router.push("/conserjeria/login");
 
   return (
@@ -26,7 +29,7 @@ export default function LandingPage() {
         <header className="text-center mb-16">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
             <span className="border text-cyan-400 rounded-lg px-1">L</span>
-            ibro de{" "}
+            ibro de {" "}
             <span className="border text-cyan-400 rounded-lg px-1">R</span>
             egistros
             <span className="text-cyan-400 font-extrabold border rounded-lg px-1 ml-1 text-lg">
@@ -39,13 +42,11 @@ export default function LandingPage() {
         </header>
 
         <div className="flex flex-col items-center gap-4 w-full max-w-md">
-          <button onClick={() => handleAuth("login")} className={primaryButton}>
-            
-            Ver Triptico 
+          <button onClick={handleTriptico} className={primaryButton}>
+            Ver Tríptico
           </button>
 
           <button onClick={handleConserjeria} className={primaryButton}>
-            
             Ver Video-Demo
           </button>
 
