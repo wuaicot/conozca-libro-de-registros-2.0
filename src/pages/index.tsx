@@ -18,7 +18,8 @@ export default function LandingPage() {
     router.push("/triptico");
   };
 
-  const handleConserjeria = () => router.push("/conserjeria/login");
+  const handleVideoDemo = () => router.push("/video-demo");
+  const handleConserjeria = () => router.push("/conserjeria");
 
   return (
     <main className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
@@ -29,7 +30,7 @@ export default function LandingPage() {
         <header className="text-center mb-16">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
             <span className="border text-cyan-400 rounded-lg px-1">L</span>
-            ibro de {" "}
+            ibro de{" "}
             <span className="border text-cyan-400 rounded-lg px-1">R</span>
             egistros
             <span className="text-cyan-400 font-extrabold border rounded-lg px-1 ml-1 text-lg">
@@ -46,7 +47,7 @@ export default function LandingPage() {
             Ver Tríptico
           </button>
 
-          <button onClick={handleConserjeria} className={primaryButton}>
+          <button onClick={handleVideoDemo} className={primaryButton}>
             Ver Video-Demo
           </button>
 
