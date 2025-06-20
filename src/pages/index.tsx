@@ -2,92 +2,68 @@ import React from "react";
 import { useRouter } from "next/router";
 
 
-import { RiAdminLine, RiUserAddLine, RiLoginBoxLine } from "react-icons/ri";
-
 export default function LandingPage() {
   const router = useRouter();
 
-  const baseButtonStyles =
-    "flex items-center justify-center w-sm:sm px-6 py-3 text-lg font-semibold rounded-2xl shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-200 ease-in-out";
-  const outlineButtonStyles = `${baseButtonStyles} text-cyan-400 border-2 border-violet-00 hover:bg-cyan-500 hover:text-white focus:ring-cyan-400`;
+  const baseButton =
+    "flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-2xl shadow-md transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900";
+  const primaryButton = `${baseButton} border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white`;
+  const outlineButton = `${baseButton} border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500`;
 
-  // Handles authentication actions like login and register
-  const handleAuthAction = (action: "login" | "register") => {
-    if (action === "login") {
-      router.push("/admin/login");
-    } else if (action === "register") {
-      router.push("/register");
-    }
+  const handleAuth = (action: "login" | "register") => {
+    const path = action === "login" ? "/admin/login" : "/register";
+    router.push(path);
   };
 
-  // Handles conserjería button click
-  const handleConserjeriaClick = () => {
-    router.push("/conserjeria/login");
-  };
-
-  
-
- 
+  const handleConserjeria = () => router.push("/conserjeria/login");
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
-      <main className="flex flex-col items-center justify-center flex-grow p-6 sm:p-8 lg:p-12">
-        <div className="text-center mb-24 sm:mb-12 md:mb-16">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight -mt-4 -ml-10 ">
-            <span className="border text-cyan-400 rounded-lg  pl-1 pr-1 ">
-              L
-            </span>
+    <main className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
+      <section className="animate-pulse translate-y-8 text-yellow-400 text-center text-lg mt-12">
+        <h1>Conozca su nuevo sistema</h1>
+      </section>
+      <section className="flex flex-col items-center justify-center flex-grow p-6 sm:p-8 lg:p-12">
+        <header className="text-center mb-16">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
+            <span className="border text-cyan-400 rounded-lg px-1">L</span>
             ibro de{" "}
-            <span className=" text-cyan-400 border pl-1 pr-1 rounded-lg">
-              R
-            </span>
+            <span className="border text-cyan-400 rounded-lg px-1">R</span>
             egistros
-            <span className="text-cyan-400 font-extrabold border rounded-tr-lg rounded-br-lg ml-1 pl-1 pr-1 text-lg absolute rounded-tl-lg">
+            <span className="text-cyan-400 font-extrabold border rounded-lg px-1 ml-1 text-lg">
               2.0
             </span>
           </h1>
-          <p className="mt-8 text-xl animate-pulse font-bold text-gray-300 ">
-            Nombre del edificio aquí
+          <p className="mt-6 text-xl font-bold text-gray-300 animate-pulse">
+            Nombre de su edificio aquí
           </p>
-        </div>
+        </header>
 
-        <div className="flex flex-col items-center gap-4 w-full max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg -mt-8">
-          <button
-            onClick={() => handleAuthAction("login")}
-            className={`${baseButtonStyles} w-full md:max-w-xs border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white cursor-pointer`}
-          >
-            <RiAdminLine className="mr-2 text-xl md:text-2xl" />
-            <span className="hidden sm:inline">Admin.</span>
-            <span className="sm:hidden">Admin.</span>
+        <div className="flex flex-col items-center gap-4 w-full max-w-md">
+          <button onClick={() => handleAuth("login")} className={primaryButton}>
+            
+            Ver Triptico 
           </button>
-          <button
-            onClick={handleConserjeriaClick}
-            className={`${baseButtonStyles} w-xs  border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white cursor-pointer`}
-          >
-            <RiLoginBoxLine className="mr-2 text-xl md:text-2xl" />
-            <span className="hidden sm:inline">Conserjería</span>
-            <span className="sm:hidden">Conserjería</span>
+
+          <button onClick={handleConserjeria} className={primaryButton}>
+            
+            Ver Video-Demo
           </button>
+
           <button
-            onClick={() => handleAuthAction("register")}
-            className={`${outlineButtonStyles} w-full md:max-w-xs cursor-pointer`}
+            onClick={() => handleAuth("register")}
+            className={outlineButton}
           >
-            <RiUserAddLine className="mr-2 text-xl md:text-2xl" />
-            <span className="text-white hidden sm:inline">
-              Solicitar Acceso
-            </span>
-            <span className="text-white hover:text-black  sm:hidden">
-              Solicitar acceso{" "}
-            </span>
+            Probar Aplicación-Demo
           </button>
         </div>
-      </main>
+      </section>
+
       <footer className="text-center p-4 text-gray-400 text-sm animate-pulse">
-        <p className="-translate-y-34">
+        <p>
           &copy; {new Date().getFullYear()} Naycol Linares • Todos los derechos
           reservados.
         </p>
       </footer>
-    </div>
+    </main>
   );
 }
