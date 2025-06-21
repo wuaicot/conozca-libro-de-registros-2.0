@@ -9,11 +9,6 @@ export default function LandingPage() {
   const primaryButton = `${baseButton} border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white`;
   const outlineButton = `${baseButton} border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500`;
 
-  const handleAuth = (action: "login" | "register") => {
-    const path = action === "login" ? "/admin/login" : "/register";
-    router.push(path);
-  };
-
   const handleTriptico = () => {
     router.push("/triptico");
   };
