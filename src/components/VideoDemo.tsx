@@ -3,8 +3,8 @@ import styles from './VideoDemo.module.css'
 
 export default function VideoDemo() {
   return (
-    <div className="flex flex-col items-center  justify-center p-4 bg-black min-h-screen">
-      <h1 className="text-3xl sm:text-4xl font-bold text-white mb-6 justify-start">
+    <div className="flex flex-col items-center  justify-center p-4 bg-black min-h-screen border mt-4">
+      <h1 className="text-3xl sm:text-4xl font-bold text-white mb-6 justify-start -mt-20">
         Video Demo — 
       </h1>
       <aside className='mb-3'>

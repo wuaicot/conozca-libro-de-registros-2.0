@@ -19,7 +19,10 @@ export default function LandingPage() {
   };
 
   const handleVideoDemo = () => router.push("/video-demo");
-  const handleConserjeria = () => router.push("/conserjeria");
+  const handleAppDemo = () => {
+    // Abre la aplicación demo en una nueva pestaña
+    window.open("https://libro-de-registros-frontend-i.vercel.app", "_blank");
+  };
 
   return (
     <main className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
@@ -51,11 +54,8 @@ export default function LandingPage() {
             Ver Video-Demo
           </button>
 
-          <button
-            onClick={() => handleAuth("register")}
-            className={outlineButton}
-          >
-            Probar Aplicación-Demo
+          <button onClick={handleAppDemo} className={outlineButton}>
+            Probar Aplicación‑Demo
           </button>
         </div>
       </section>
