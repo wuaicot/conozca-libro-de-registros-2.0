@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { initializeApp, getApps } from 'firebase/app';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, FirestoreError } from 'firebase/firestore';
 
 // Configuración de Firebase
 const firebaseConfig = {
@@ -60,13 +60,20 @@ export default async function handler(
     console.log('✅ Documento guardado con ID:', docRef.id);
     
     return res.status(200).json({ message: 'Solicitud recibida con éxito!' });
-  } catch (error: any) {
+  } catch (error) {
     console.error('❌ Error al guardar en Firestore:', error);
     
-    // Mensaje de error más amigable
-    const errorMessage = error.code 
-      ? `Firebase error (${error.code})` 
-      : 'Error interno del servidor';
+    let errorMessage = 'Error interno del servidor';
+    
+    // Manejar errores de Firebase específicos
+    if (error instanceof Error) {
+      if ('code' in error) {
+        const firestoreError = error as FirestoreError;
+        errorMessage = `Firebase error (${firestoreError.code})`;
+      } else {
+        errorMessage = error.message;
+      }
+    }
     
     return res.status(500).json({ message: errorMessage });
   }
