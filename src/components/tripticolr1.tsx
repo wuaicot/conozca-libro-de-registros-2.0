@@ -3,8 +3,8 @@ import Image from "next/image";
 
 export default function TripticoLr1() {
   return (
-    <main className="flex flex-col items-center  p-4 bg-lime-950 min-h-screen mt-4 ">
-      <h4 className="text-3xl font-bold mb-6 mt-6 text-amber-400 animate-pulse">
+    <main className="flex flex-col items-center  p-4 bg-yellow-500 min-h-screen mt-4 ">
+      <h4 className="text-4xl font-bold mb-6 mt-6 text-white ">
         Tríptico informativo{" "}
       </h4>
 

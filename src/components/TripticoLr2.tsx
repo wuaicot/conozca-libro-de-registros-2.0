@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function TripticoLr2() {
   return (
-    <main className="flex flex-col items-center p-4  bg-lime-950 min-h-screen ">
+    <main className="flex flex-col items-center p-4  bg-yellow-500 min-h-screen ">
       <div className="w-full max-w-4xl">
         <Image
           src="/tripticolr2.png"
