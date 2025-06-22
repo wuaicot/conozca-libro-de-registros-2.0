@@ -1,6 +1,6 @@
-import React from 'react'
-import Link from 'next/link'
-import VideoDemo from '@/components/VideoDemo'
+import React from "react";
+import Link from "next/link";
+import VideoDemo from "@/components/VideoDemo";
 
 export default function VideoDemoPage() {
   return (
@@ -12,5 +12,5 @@ export default function VideoDemoPage() {
       </header>
       <VideoDemo />
     </>
-  )
+  );
 }
