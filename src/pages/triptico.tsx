@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import TripticoLr1 from "../components/tripticolr1";
-import TripticoLr2 from "../components/tripticolr2";
-import TripticoLr3 from "../components/tripticolr3";
+import TripticoLr1 from "../components/triptico1";
+import TripticoLr2 from "../components/triptico2";
+import TripticoLr3 from "../components/triptico3";
 
 export default function TripticoPage() {
   return (
