@@ -1,8 +1,11 @@
-import React from "react";
+//src/pages/index.tsx
+import React, { useState } from "react";
 import { useRouter } from "next/router";
+import ModalForm from "@/components/ModalForm";
 
 export default function LandingPage() {
   const router = useRouter();
+  const [showModal, setShowModal] = useState(false);
 
   const baseButton =
     "flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-2xl shadow-md transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900";
@@ -35,9 +38,14 @@ export default function LandingPage() {
               2.0
             </span>
           </h1>
-          <p className="mt-6 text-xl font-bold text-gray-300 animate-pulse">
-            Nombre de su edificio aquí
-          </p>
+           <div>
+            <p 
+              className="cursor-pointer mt-6 text-xl font-bold text-gray-300 animate-pulse"
+              onClick={() => setShowModal(true)}
+            >
+              Solicitalo Aquí.
+            </p>
+          </div>
         </header>
 
         <div className="flex flex-col items-center gap-4 w-full max-w-md">
@@ -61,6 +69,7 @@ export default function LandingPage() {
           reservados.
         </p>
       </footer>
+      <ModalForm isOpen={showModal} onClose={() => setShowModal(false)} />
     </main>
   );
 }

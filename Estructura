@@ -2,12 +2,19 @@ CONOZCA-LIBRO-DE-REGISTRO-2.0/
 │── node_modules
 ├── public   
 └── src/
+    ├── components/
+    │   ├── triptico1.tsx
+    │   ├── triptico2.tsx
+    │   ├── triptico3.tsx
+    │   └── VideoDemo.tsx
     ├── pages/
     │   └── api/
     │   │   └── hello.ts
     │   ├── _app.tsx
     │   ├── _document.tsx
-    │   └── index.tsx
+    │       └── index.tsx
+    │   ├── triptico.tsx
+    │   └── video-demo.tsx
     ├── styles/
         └── globals.css
          
@@ -16,10 +23,11 @@ CONOZCA-LIBRO-DE-REGISTRO-2.0/
 ├── eslint.config.mjs
 ├── next-env.d.ts
 ├── next.config.ts
-├── package-lock.json
+├── pnpm-lock-yaml
 ├── package.json
 ├── postcss.config.mjs
 ├── README.md
+├── taildwind.config.js
 └── tsconfig.json
 
 
