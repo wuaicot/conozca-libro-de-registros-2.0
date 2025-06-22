@@ -1,6 +1,6 @@
-import React from 'react'
-import Link from 'next/link'
-import TripticoLr2 from '@/components/TripticoLr2'
+import React from "react";
+import Link from "next/link";
+import TripticoLr1 from "../components/TripticoLr1";
 
 export default function TripticoPage() {
   return (
@@ -9,10 +9,9 @@ export default function TripticoPage() {
         <Link href="/" className="text-cyan-400 hover:underline">
           🔰 Volver al inicio
         </Link>
-        
       </header>
-      
-      <TripticoLr2 />
+
+      <TripticoLr1 />
     </>
-  )
+  );
 }
