@@ -68,7 +68,7 @@ export default function LandingPage() {
               className="cursor-pointer mt-6 text-xl font-semibold text-gray-300 animate-pulse"
               onClick={() => setShowModal(true)}
             >
-             <span className="animate-bounce text-yellow-400 text-2xl">▷</span> Solicite prueba gratis Aquí<span className="animate-bounce text-yellow-400 text-2xl"> ◁</span>
+             <span className="animate-bounce text-lime-500 text-2xl">▷</span>Solicite una semana gratis Aquí<span className="animate-bounce text-lime-500 text-2xl">◁</span>
             </p>
           </div>
       </section>
