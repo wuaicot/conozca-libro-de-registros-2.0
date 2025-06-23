@@ -24,7 +24,7 @@ export default function LandingPage() {
 
   return (
     <main className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
-      <section className="animate-pulse translate-y-8 text-yellow-400 text-center text-lg mt-12">
+      <section className="translate-y-8 text-lime-500 text-center text-lg mt-12">
         <h1>Conozca su nuevo sistema</h1>
       </section>
       <section className="flex flex-col items-center justify-center flex-grow p-6 sm:p-8 lg:p-12">
@@ -38,14 +38,15 @@ export default function LandingPage() {
               2.0
             </span>
           </h1>
-           <div>
+           {/* <div>
+
             <p 
-              className="cursor-pointer mt-6 text-xl font-bold text-gray-300 animate-pulse"
+              className="cursor-pointer mt-6 text-xl font-semibold text-gray-300 animate-pulse"
               onClick={() => setShowModal(true)}
             >
-              Solicitalo Aquí.
+             <span className="animate-bounce">▷</span> Solicite prueba gratis Aquí<span className="animate-bounce"> ◁</span>
             </p>
-          </div>
+          </div> */}
         </header>
 
         <div className="flex flex-col items-center gap-4 w-full max-w-md">
@@ -61,12 +62,21 @@ export default function LandingPage() {
             Probar Aplicación‑Demo
           </button>
         </div>
+         <div>
+
+            <p 
+              className="cursor-pointer mt-6 text-xl font-semibold text-gray-300 animate-pulse"
+              onClick={() => setShowModal(true)}
+            >
+             <span className="animate-bounce text-yellow-400 text-2xl">▷</span> Solicite prueba gratis Aquí<span className="animate-bounce text-yellow-400 text-2xl"> ◁</span>
+            </p>
+          </div>
       </section>
 
       <footer className="text-center p-4 text-gray-400 text-sm animate-pulse">
         <p>
           &copy; {new Date().getFullYear()} Naycol Linares • Todos los derechos
-          reservados.
+          reservados
         </p>
       </footer>
       <ModalForm isOpen={showModal} onClose={() => setShowModal(false)} />
