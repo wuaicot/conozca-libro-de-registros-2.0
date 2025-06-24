@@ -24,10 +24,11 @@ if (!getApps().length) {
 }
 
 interface Solicitud {
-  name: string; // Nuevo campo
-  email?: string; // Campo opcional para compatibilidad
+  name: string;
   edificio: string;
+  ciudad: string;
   cargo: string;
+  comentario: string;
   correoPrueba?: string | null;
   timestamp: string;
 }
@@ -42,19 +43,20 @@ export default async function handler(
   }
 
   try {
-    const { name, email, edificio, cargo, correoPrueba } = req.body as Solicitud;
+    const { name, edificio, ciudad, cargo, comentario, correoPrueba } = req.body as Solicitud;
 
     // Validación básica actualizada
-    if (!name || !edificio || !cargo) {
+    if (!name || !edificio || !ciudad || !cargo) {
       return res.status(400).json({ message: 'Faltan campos requeridos' });
     }
 
-    // Guardar en Firestore con el nuevo campo
+    // Guardar en Firestore con los nuevos campos
     const docRef = await addDoc(collection(db, 'solicitudes'), {
-      name, // Nuevo campo
-      email: email || null, // Mantener compatibilidad
+      name,
       edificio,
+      ciudad,
       cargo,
+      comentario: comentario || "",
       correoPrueba: correoPrueba || null,
       timestamp: new Date().toISOString()
     });

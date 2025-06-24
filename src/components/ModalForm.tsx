@@ -3,9 +3,33 @@ import React, { useState } from "react";
 interface FormData {
   name: string;
   edificio: string;
+  ciudad: string;
   cargo: string;
+  comentario: string;
   correoPrueba?: string;
 }
+
+const ciudadesChile = [
+  "Arica",
+  "Iquique",
+  "Antofagasta",
+  "Calama",
+  "Copiapó",
+  "La Serena",
+  "Coquimbo",
+  "Valparaíso",
+  "Viña del Mar",
+  "Santiago",
+  "Rancagua",
+  "Talca",
+  "Chillán",
+  "Concepción",
+  "Temuco",
+  "Valdivia",
+  "Puerto Montt",
+  "Coyhaique",
+  "Punta Arenas",
+];
 
 const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
   isOpen,
@@ -14,7 +38,9 @@ const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
   const [formData, setFormData] = useState<FormData>({
     name: "",
     edificio: "",
+    ciudad: "",
     cargo: "",
+    comentario: "",
     correoPrueba: "",
   });
   const [errors, setErrors] = useState<Partial<FormData>>({});
@@ -22,7 +48,9 @@ const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -38,6 +66,7 @@ const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
     if (!formData.edificio)
       newErrors.edificio =
         'Nombre y # del edificio es requerido ej: "Edif. Williams 602"';
+    if (!formData.ciudad) newErrors.ciudad = "Por favor selecciona tu ciudad";
     if (!formData.cargo) newErrors.cargo = "Por favor selecciona tu cargo";
 
     // Validar correoPrueba si es requerido
@@ -58,13 +87,13 @@ const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
 
     setIsSubmitting(true);
     try {
-      // Crear payload con los datos necesarios
       const payload = {
         name: formData.name,
-        email: "", // Mantenemos compatibilidad con el backend
         edificio: formData.edificio,
+        ciudad: formData.ciudad,
         cargo: formData.cargo,
-        correoPrueba: formData.correoPrueba || null
+        comentario: formData.comentario,
+        correoPrueba: formData.correoPrueba || null,
       };
 
       const response = await fetch("/api/solicitud", {
@@ -78,7 +107,14 @@ const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
       if (response.ok) {
         setSubmitSuccess(true);
         // Reset form after successful submission
-        setFormData({ name: "", edificio: "", cargo: "", correoPrueba: "" });
+        setFormData({
+          name: "",
+          edificio: "",
+          ciudad: "",
+          cargo: "",
+          comentario: "",
+          correoPrueba: "",
+        });
         // Close modal after 3 seconds
         setTimeout(() => {
           setSubmitSuccess(false);
@@ -102,10 +138,10 @@ const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
-      <div className="bg-gray-800 rounded-2xl border border-cyan-500 shadow-lg shadow-cyan-500/10 w-full max-w-md">
+      <div className="bg-gray-800 rounded-2xl border border-cyan-500 shadow-lg shadow-cyan-500/10 w-full max-w-md mt-8">
         <div className="p-6">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold text-cyan-400 text-center">
+            <h2 className="text-2xl font-bold text-cyan-400 text-center -mt-4">
               Algunos datos para prepararnos:
             </h2>
             <button
@@ -122,7 +158,7 @@ const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
               <h3 className="text-xl font-bold text-white">
                 ¡Gracias por su interés!
               </h3>
-              <p className="text-gray-300 mt-2">Te contactaremos pronto.</p>
+              <p className="text-gray-300 mt-2">Le contactaremos pronto 😊</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -132,7 +168,7 @@ const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                   htmlFor="name"
                   className="block text-bd font-medium mb-1"
                 >
-                  ♦ Su Nombre *
+                  ♦ Su Nombre <span className="text-cyan-500 text-lg">*</span>
                 </label>
                 <input
                   type="text"
@@ -154,7 +190,7 @@ const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                   htmlFor="edificio"
                   className="block text-md font-medium mb-1"
                 >
-                  ♦ Nombre # del Edificio *
+                  ♦ Nombre # del Edificio <span className="text-cyan-500 text-lg">*</span>
                 </label>
                 <input
                   type="text"
@@ -170,13 +206,40 @@ const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                 )}
               </div>
 
+              {/* Ciudad */}
+              <div>
+                <label
+                  htmlFor="ciudad"
+                  className="block text-md font-medium mb-1"
+                >
+                  ♦ Ciudad <span className="text-cyan-500 text-lg">*</span>
+                </label>
+                <select
+                  id="ciudad"
+                  name="ciudad"
+                  value={formData.ciudad}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                >
+                  <option value="">Selecciona tu ciudad</option>
+                  {ciudadesChile.map((ciudad) => (
+                    <option key={ciudad} value={ciudad}>
+                      {ciudad}
+                    </option>
+                  ))}
+                </select>
+                {errors.ciudad && (
+                  <p className="mt-1 text-sm text-red-500">{errors.ciudad}</p>
+                )}
+              </div>
+
               {/* Cargo */}
               <div>
                 <label
                   htmlFor="cargo"
                   className="block text-md font-medium mb-1"
                 >
-                 ♦ ¿Su Cargo? *
+                  ♦ Su Cargo <span className="text-cyan-500 text-lg">*</span>{" "}
                 </label>
                 <select
                   id="cargo"
@@ -188,7 +251,7 @@ const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                   <option value="">-</option>
                   <option value="Administración">Administración</option>
                   <option value="Mayordomo">Mayordomo</option>
-                  <option value="Propietario">Conserje</option>
+                  <option value="Conserje">Conserje</option>
                 </select>
                 {errors.cargo && (
                   <p className="mt-1 text-sm text-red-500">{errors.cargo}</p>
@@ -203,7 +266,7 @@ const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                     htmlFor="correoPrueba"
                     className="block text-sm font-medium text-lime-300 mb-1 ml-5"
                   >
-                  • Correo para solicitar la prueba *
+                    • Correo para solicitar la prueba <span className="text-cyan-500 text-lg">*</span>
                   </label>
                   <input
                     type="email"
@@ -215,8 +278,7 @@ const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                     placeholder="sucorreo@gmail.com"
                   />
                   <p className="mt-1 text-xs text-lime-300">
-                    Para la prueba recomendamos usar correo personal (ej: @gmail) y
-                    no el de la administración.
+                    Para la prueba recomendamos usar correo personal (@gmail) y no el de la administración.
                   </p>
                   {errors.correoPrueba && (
                     <p className="mt-1 text-sm text-red-500">
@@ -225,6 +287,25 @@ const ModalForm: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                   )}
                 </div>
               )}
+
+              {/* Comentario - Cómo podemos ayudar */}
+              <div>
+                <label
+                  htmlFor="comentario"
+                  className="block text-md font-medium text-cyan-300 mb-1"
+                >
+                  ¿Cómo podemos ayudar en su comunidad?
+                </label>
+                <textarea
+                  id="comentario"
+                  name="comentario"
+                  value={formData.comentario}
+                  onChange={handleChange}
+                  rows={3}
+                  className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                  placeholder="Describa brevemente cómo podemos ayudar a su comunidad..."
+                ></textarea>
+              </div>
 
               <div className="pt-4">
                 <button
