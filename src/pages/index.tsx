@@ -65,10 +65,10 @@ export default function LandingPage() {
          <div>
 
             <p 
-              className="cursor-pointer mt-6 text-xl font-semibold text-gray-300 animate-pulse"
+              className="cursor-pointer mt-6 text-lg font-extralight  text-gray-300 animate-pulse"
               onClick={() => setShowModal(true)}
             >
-             <span className="animate-bounce text-lime-500 text-2xl">▷</span>Solicite una semana gratis Aquí<span className="animate-bounce text-lime-500 text-2xl">◁</span>
+             <span className="animate-bounce text-lime-500 text-2xl ">▷</span> Clic para  abrir formulario de solicitud <span className="animate-bounce text-lime-500 text-2xl">◁</span>
             </p>
           </div>
       </section>
